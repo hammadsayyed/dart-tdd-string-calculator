@@ -16,4 +16,9 @@ void main(){
     var calculator = StringCalculator();
     expect(calculator.add('1,2'), 3);
   });
+
+  test('Multiple numbers separated by comma should return their sum', () {
+    final calculator = StringCalculator();
+    expect(calculator.add("1,2,3,4,5"), equals(15));
+  });
 }
