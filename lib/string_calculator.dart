@@ -1,7 +1,11 @@
 class StringCalculator{
-  int add(numbersStr){
+  int add(String numbersStr){
     if (numbersStr.isEmpty) return 0;
-    final normalized = numbersStr.replaceAll('\n', ',');
-    return normalized.split(',').map(int.parse).reduce((prev, current) => prev + current);
+    String delimiter = ',';
+    if (numbersStr.startsWith('//')) {
+      delimiter = numbersStr[2];
+      numbersStr = numbersStr.substring(4);
+    }
+    return numbersStr.split(RegExp('[$delimiter\n]')).map(int.parse).reduce((a, b) => a + b);
   }
 }
