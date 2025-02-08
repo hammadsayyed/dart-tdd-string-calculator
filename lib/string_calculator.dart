@@ -14,7 +14,7 @@ class StringCalculator{
     if (negatives.isNotEmpty) {
       throw Exception('Negatives are not allowed: ${negatives.join(',')}');
     }
-    return numberList.reduce((a, b) => a + b);
+    return numberList.where((n) => n <= 1000).reduce((a, b) => a + b);
   }
 
   int getCalledCount() {
