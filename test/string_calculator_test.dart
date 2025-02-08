@@ -39,6 +39,24 @@ void main() {
     expect(() => calculator.add('1,-2,3,-4'), throwsException);
   });
 
+  test('Add should throw an exception for a single negative number', () {
+    final calculator = StringCalculator();
+    expect(
+        () => calculator.add("1,-2,3"),
+        throwsA(predicate((e) =>
+            e is Exception &&
+            e.toString() == "Exception: negatives not allowed -2")));
+  });
+
+  test('Add should throw an exception listing all negative numbers', () {
+    final calculator = StringCalculator();
+    expect(
+        () => calculator.add("1,-2,-3,4,-5"),
+        throwsA(predicate((e) =>
+            e is Exception &&
+            e.toString() == "Exception: negatives not allowed -2,-3,-5")));
+  });
+
   test('GetCalledCount returns 0 when Add has not been called', () {
     final calculator = StringCalculator();
     expect(calculator.getCalledCount(), 0);
