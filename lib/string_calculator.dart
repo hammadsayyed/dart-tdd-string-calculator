@@ -6,6 +6,11 @@ class StringCalculator{
       delimiter = numbersStr[2];
       numbersStr = numbersStr.substring(4);
     }
-    return numbersStr.split(RegExp('[$delimiter\n]')).map(int.parse).reduce((a, b) => a + b);
+    var numberList = numbersStr.split(RegExp('[$delimiter\n]')).map(int.parse).toList();
+    var negatives = numberList.where((n) => n < 0).toList();
+    if (negatives.isNotEmpty) {
+      throw Exception('Negatives are not allowed: ${negatives.join(',')}');
+    }
+    return numberList.reduce((a, b) => a + b);
   }
 }
