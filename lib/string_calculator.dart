@@ -4,19 +4,22 @@ class StringCalculator{
   int add(String numbersStr){
     _addCallCount +=1;
     if (numbersStr.isEmpty) return 0;
-    String delimiter = ',';
+    List<String> delimiters = [','];
     if (numbersStr.startsWith('//')) {
       if (numbersStr[2] == '[') {
-        delimiter = numbersStr.substring(3, numbersStr.indexOf(']'));
+        var delimiterSection = numbersStr.substring(3, numbersStr.indexOf('\n'));
+        delimiters = delimiterSection.split(']').map((d) => d.replaceAll('[', '')).toList();
         numbersStr = numbersStr.substring(numbersStr.indexOf('\n') + 1);
       } else {
-        delimiter = numbersStr[2];
+        delimiters = [numbersStr[2]];
         numbersStr = numbersStr.substring(4);
       }
+    }else{
+      numbersStr = numbersStr.replaceAll('\n', ',');
     }
 
-    var splittedNum = numbersStr.split(RegExp('[$delimiter\n]')).where((item) => item.isNotEmpty).toList();;
-    var numberList = splittedNum.map(int.parse).toList();
+    var regex = RegExp(delimiters.map((d) => RegExp.escape(d)).join('|'));
+    var numberList = numbersStr.split(regex).map(int.parse).toList();
     var negatives = numberList.where((n) => n < 0).toList();
     if (negatives.isNotEmpty) {
       throw Exception('Negatives are not allowed: ${negatives.join(',')}');
