@@ -6,10 +6,17 @@ class StringCalculator{
     if (numbersStr.isEmpty) return 0;
     String delimiter = ',';
     if (numbersStr.startsWith('//')) {
-      delimiter = numbersStr[2];
-      numbersStr = numbersStr.substring(4);
+      if (numbersStr[2] == '[') {
+        delimiter = numbersStr.substring(3, numbersStr.indexOf(']'));
+        numbersStr = numbersStr.substring(numbersStr.indexOf('\n') + 1);
+      } else {
+        delimiter = numbersStr[2];
+        numbersStr = numbersStr.substring(4);
+      }
     }
-    var numberList = numbersStr.split(RegExp('[$delimiter\n]')).map(int.parse).toList();
+
+    var splittedNum = numbersStr.split(RegExp('[$delimiter\n]')).where((item) => item.isNotEmpty).toList();;
+    var numberList = splittedNum.map(int.parse).toList();
     var negatives = numberList.where((n) => n < 0).toList();
     if (negatives.isNotEmpty) {
       throw Exception('Negatives are not allowed: ${negatives.join(',')}');

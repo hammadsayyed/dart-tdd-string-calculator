@@ -61,4 +61,9 @@ void main(){
     expect(calculator.add('2,1001'), 2);
   });
 
+  test('Delimiters of any length should be supported', () {
+    var calculator = StringCalculator();
+    expect(calculator.add('//[***]\n1***2***3'), 6);
+  });
+
 }
