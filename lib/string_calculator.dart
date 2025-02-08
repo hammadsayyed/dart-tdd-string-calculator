@@ -1,5 +1,6 @@
 class StringCalculator{
   int add(numbersStr){
-    return 0;
+    if (numbersStr.isEmpty) return 0;
+    return int.parse(numbersStr);
   }
 }
