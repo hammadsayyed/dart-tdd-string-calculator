@@ -70,4 +70,10 @@ void main(){
     var calculator = StringCalculator();
     expect(calculator.add('//[*][%]\n1*2%3'), 6);
   });
+
+  test('Add should handle multiple delimiters with length longer than one character', () {
+    final calculator = StringCalculator();
+    expect(calculator.add("//[**][%%]\n1**2%%3"), equals(6));
+  });
+
 }
