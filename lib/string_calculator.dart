@@ -1,20 +1,24 @@
-class StringCalculator{
+class StringCalculator {
   int _addCallCount = 0;
 
-  int add(String numbersStr){
-    _addCallCount +=1;
+  int add(String numbersStr) {
+    _addCallCount += 1;
     if (numbersStr.isEmpty) return 0;
     List<String> delimiters = [','];
     if (numbersStr.startsWith('//')) {
       if (numbersStr[2] == '[') {
-        var delimiterSection = numbersStr.substring(3, numbersStr.indexOf('\n'));
-        delimiters = delimiterSection.split(']').map((d) => d.replaceAll('[', '')).toList();
+        var delimiterSection =
+            numbersStr.substring(3, numbersStr.indexOf('\n'));
+        delimiters = delimiterSection
+            .split(']')
+            .map((d) => d.replaceAll('[', ''))
+            .toList();
         numbersStr = numbersStr.substring(numbersStr.indexOf('\n') + 1);
       } else {
         delimiters = [numbersStr[2]];
         numbersStr = numbersStr.substring(4);
       }
-    }else{
+    } else {
       numbersStr = numbersStr.replaceAll('\n', ',');
     }
 

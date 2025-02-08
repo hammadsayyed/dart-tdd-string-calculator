@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tdd_calculator/string_calculator.dart';
 
-void main(){
-  test('Empty string should return 0', (){
+void main() {
+  test('Empty string should return 0', () {
     final StringCalculator stringCalculator = StringCalculator();
     expect(stringCalculator.add(""), 0);
   });
@@ -12,7 +12,9 @@ void main(){
     expect(calculator.add('1'), 1);
   });
 
-  test('Two numbers separated by a comma should return the sum of those numbers.', () {
+  test(
+      'Two numbers separated by a comma should return the sum of those numbers.',
+      () {
     var calculator = StringCalculator();
     expect(calculator.add('1,2'), 3);
   });
@@ -48,7 +50,8 @@ void main(){
     expect(calculator.getCalledCount(), 1);
   });
 
-  test('GetCalledCount returns the correct count after multiple calls to Add', () {
+  test('GetCalledCount returns the correct count after multiple calls to Add',
+      () {
     final calculator = StringCalculator();
     calculator.add("1");
     calculator.add("2");
@@ -71,9 +74,10 @@ void main(){
     expect(calculator.add('//[*][%]\n1*2%3'), 6);
   });
 
-  test('Add should handle multiple delimiters with length longer than one character', () {
+  test(
+      'Add should handle multiple delimiters with length longer than one character',
+      () {
     final calculator = StringCalculator();
     expect(calculator.add("//[**][%%]\n1**2%%3"), equals(6));
   });
-
 }
