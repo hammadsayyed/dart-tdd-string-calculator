@@ -13,4 +13,8 @@ class StringCalculator{
     }
     return numberList.reduce((a, b) => a + b);
   }
+
+  int getCalledCount() {
+    return 0;
+  }
 }

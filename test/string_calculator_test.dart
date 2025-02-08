@@ -36,4 +36,24 @@ void main(){
     var calculator = StringCalculator();
     expect(() => calculator.add('1,-2,3,-4'), throwsException);
   });
+
+  test('GetCalledCount returns 0 when Add has not been called', () {
+    final calculator = StringCalculator();
+    expect(calculator.getCalledCount(), 0);
+  });
+
+  test('GetCalledCount returns 1 after one call to Add', () {
+    final calculator = StringCalculator();
+    calculator.add("1");
+    expect(calculator.getCalledCount(), 1);
+  });
+
+  test('GetCalledCount returns the correct count after multiple calls to Add', () {
+    final calculator = StringCalculator();
+    calculator.add("1");
+    calculator.add("2");
+    calculator.add("3");
+    expect(calculator.getCalledCount(), 3);
+  });
+
 }
