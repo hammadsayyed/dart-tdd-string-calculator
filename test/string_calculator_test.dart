@@ -56,4 +56,9 @@ void main(){
     expect(calculator.getCalledCount(), 3);
   });
 
+  test('Numbers bigger than 1000 should be ignored', () {
+    var calculator = StringCalculator();
+    expect(calculator.add('2,1001'), 2);
+  });
+
 }
