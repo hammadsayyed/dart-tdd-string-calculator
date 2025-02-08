@@ -21,4 +21,9 @@ void main(){
     final calculator = StringCalculator();
     expect(calculator.add("1,2,3,4,5"), equals(15));
   });
+
+  test('New lines between numbers should be handled', () {
+    var calculator = StringCalculator();
+    expect(calculator.add('1\n2,3'), 6);
+  });
 }
