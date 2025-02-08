@@ -11,4 +11,9 @@ void main(){
     var calculator = StringCalculator();
     expect(calculator.add('1'), 1);
   });
+
+  test('Two numbers separated by a comma should return the sum of those numbers.', () {
+    var calculator = StringCalculator();
+    expect(calculator.add('1,2'), 3);
+  });
 }
