@@ -26,7 +26,7 @@ class StringCalculator {
     var numberList = numbersStr.split(regex).map(int.parse).toList();
     var negatives = numberList.where((n) => n < 0).toList();
     if (negatives.isNotEmpty) {
-      throw Exception('Negatives are not allowed: ${negatives.join(',')}');
+      throw Exception('negatives not allowed ${negatives.join(',')}');
     }
     return numberList.where((n) => n <= 1000).reduce((a, b) => a + b);
   }
