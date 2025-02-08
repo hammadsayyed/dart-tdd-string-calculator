@@ -1,5 +1,8 @@
 class StringCalculator{
+  int _addCallCount = 0;
+
   int add(String numbersStr){
+    _addCallCount +=1;
     if (numbersStr.isEmpty) return 0;
     String delimiter = ',';
     if (numbersStr.startsWith('//')) {
@@ -15,6 +18,6 @@ class StringCalculator{
   }
 
   int getCalledCount() {
-    return 0;
+    return _addCallCount;
   }
 }
